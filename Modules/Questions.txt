@@ -1,0 +1,6 @@
+﻿Russian	English
+Куда	where
+когда	when
+о	about
+пока	while
+Чей	whose

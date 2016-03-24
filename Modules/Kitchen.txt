@@ -1,0 +1,11 @@
+﻿Russian	English
+сварить	cook
+помыть	wash
+посуду	dishes
+нож	knife
+ложка	spoon
+вилка	fork
+тарелка	plate
+ужин	dinner
+завтрак	breakfast
+обед	lunch
