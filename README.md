@@ -5,4 +5,7 @@ Description: Allows you to study a foreign language by providing the english wor
              and asking you for the foreign language equivalent, or vice versa.
 
 
+Very much a work in progress, but it works well enough at the moment if you want to
+get studying :)
+
 
