@@ -22,11 +22,6 @@ class Widget(QWidget):
         self.h_layout_0 = QHBoxLayout()
         self.h_layout_1 = QHBoxLayout()
         self.h_layout_2 = QHBoxLayout()
-
-        
-        ### h_layout_0 contents...
-        #self.mLabel = QtGui.QLabel('Module')
-        #self.h_layout_0.addWidget(self.mLabel)
         self.mSelect = QComboBox() # for selecting a module...
         
         # populating the combobox...
@@ -42,9 +37,9 @@ class Widget(QWidget):
             words = line.split("\t")
             self.vocab.append((words[0], words[1].replace("\n", "")))
         defaultModule.close()
-
-        self.progress = 1
-        self.sel = randint(1, len(self.vocab)-1)
+		
+        self.progress = 1						# initializing the user's 'progress'
+        self.sel = randint(1, len(self.vocab)-1)# Setting the initial vocab selection to something random
         
         #self.h_layout_0.addWidget(self.lSelect)
         self.h_layout_0.addWidget(self.mSelect)
@@ -54,19 +49,15 @@ class Widget(QWidget):
         self.russian = QLineEdit()
         self.russian.setText(self.vocab[self.sel][0])
         self.russian.setFixedWidth(200)
-        self.russian.returnPressed.connect(self.button_clicked)
+        self.russian.returnPressed.connect(self.enter_pressed)
         self.russian_label = QtGui.QLabel('Russian')
         self.h_layout_1.addWidget(self.russian_label)
         self.h_layout_1.addWidget(self.russian)
-        # Assigning them to h_layout_1
-        
-        
         
         ### h_layout_2 contents...
         self.english = QLineEdit()
         self.english.setFixedWidth(200)
-        self.english.returnPressed.connect(self.button_clicked)
-        
+        self.english.returnPressed.connect(self.enter_pressed)
         self.url_label = QtGui.QLabel('English')
         self.h_layout_2.addWidget(self.url_label)
         self.h_layout_2.addWidget(self.english)
@@ -74,15 +65,12 @@ class Widget(QWidget):
         # Finishing...
         self.status_bar = QtGui.QStatusBar(self)
         
-        #self.submit = QtGui.QPushButton("Submit", self)
-        #self.scan.setFixedWidth(100)
-        
-        #self.submit.clicked.connect(self.button_clicked)
+		# Adding the sublayouts to the primary layout
         self.primary_layout.addLayout(self.h_layout_0)
         self.primary_layout.addLayout(self.h_layout_1)
         self.primary_layout.addLayout(self.h_layout_2)
-        #self.primary_layout.addWidget(self.submit)
-        
+
+		# Instantiating the progress bar
         self.progressbar = QtGui.QProgressBar()
         self.progressbar.setMinimum(1)
         self.progressbar.setMaximum(100)
@@ -95,7 +83,8 @@ class Widget(QWidget):
         
         self.progressbar.setValue(self.progress)
         QtGui.QApplication.setStyle(QtGui.QStyleFactory.create("Cleanlooks"))
-        
+     
+	
     def changeInputLanguage(self):
         if self.lSelect.isChecked():
             self.russian.setText("")
@@ -105,7 +94,7 @@ class Widget(QWidget):
             self.russian.setText(self.vocab[self.sel][0])
 
    
-    def button_clicked(self):
+    def enter_pressed(self):
         
         if self.lSelect.isChecked(): # we are checking the russian entry
             if self.vocab[self.sel][0] == self.russian.text():
